@@ -1,7 +1,7 @@
 import { Tenant } from "@/types";
 
 const data: Record<string, Tenant> = {
-  bigbank: {
+  "dcc4ff9b-de85-4135-91f3-71ebe66092c6": {
     id: "dcc4ff9b-de85-4135-91f3-71ebe66092c6",
     name: "BigBank",
     logo: "",
@@ -9,7 +9,7 @@ const data: Record<string, Tenant> = {
     secondaryColor: "#000000",
     country: "UK",
     labels: {
-      bigbankaccounts: {
+      "59fc4422-4c8a-4b3e-b954-17b3aa35c71d": {
         id: "59fc4422-4c8a-4b3e-b954-17b3aa35c71d",
         name: "BigBank Accounts",
         logo: null,
@@ -17,7 +17,7 @@ const data: Record<string, Tenant> = {
         secondaryColor: null,
         country: null,
       },
-      bigbankloans: {
+      "e2deafd6-a8e0-4881-9e20-1eac1639bd66": {
         id: "e2deafd6-a8e0-4881-9e20-1eac1639bd66",
         name: "BigBank Loans",
         logo: "",
@@ -25,7 +25,7 @@ const data: Record<string, Tenant> = {
         secondaryColor: "",
         country: null,
       },
-      bigbankpremium: {
+      "c700340b-bd7c-453c-a6c7-b44d6122adf2": {
         id: "c700340b-bd7c-453c-a6c7-b44d6122adf2",
         name: "BigBank Premium",
         logo: "",
@@ -33,7 +33,7 @@ const data: Record<string, Tenant> = {
         secondaryColor: "",
         country: null,
       },
-      bigbanksavings: {
+      "ad54706b-ff43-4ec0-84da-66f6513d2891": {
         id: "ad54706b-ff43-4ec0-84da-66f6513d2891",
         name: "BigBank Savings",
         logo: "",
@@ -45,23 +45,43 @@ const data: Record<string, Tenant> = {
   },
 };
 
-const getTenant = (tenantName: string) => {
-  return data[tenantName];
+const getTenantByName = (tenantName: string) => {
+  return Object.values(data).find((tenant) => tenant.name === tenantName);
 };
 
-const getLabel = (tenantName: string, labelName: string) => {
-  const tenant = getTenant(tenantName);
+const getTenant = (id: string) => {
+  return data[id];
+};
+
+const getLabelByName = (tenantId: string, labelName: string) => {
+  const tenant = getTenant(tenantId);
   if (tenant) {
-    const label = tenant.labels[labelName];
-    if (label) {
-      return label;
-    }
+    return Object.values(tenant.labels).find(
+      (label) => label.name === labelName,
+    );
   }
-  throw new Error(`Label ${labelName} not found for tenant ${tenantName}`);
 };
 
-const doesTenantExist = (tenantName: string) => {
-  return data[tenantName] !== undefined;
+const getLabel = (tenantId: string, labelId: string) => {
+  const tenant = getTenant(tenantId);
+  if (tenant) {
+    return tenant.labels[labelId];
+  }
 };
 
-export { getTenant, getLabel, doesTenantExist };
+const doesTenantExist = (id: string) => {
+  return data[id] !== undefined;
+};
+
+const doesTenantExistByName = (tenantName: string) => {
+  return Object.values(data).find((tenant) => tenant.name === tenantName) !== undefined;
+};
+
+export {
+  getTenantByName,
+  getTenant,
+  getLabelByName,
+  getLabel,
+  doesTenantExist,
+  doesTenantExistByName,
+};
