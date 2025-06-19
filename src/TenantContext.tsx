@@ -5,16 +5,17 @@ import {
   PropsWithChildren,
   SetStateAction,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { Label, Tenant } from "@/types";
-import { getTenant } from "./mock";
+import { getTenant, getTenantByName } from "./mock";
 
 type TenantContextType = {
-  currentTenant: Tenant | null;
-  setCurrentTenant: Dispatch<SetStateAction<Tenant | null>>;
-  currentLabel: Label | null;
-  setCurrentLabel: Dispatch<SetStateAction<Label | null>>;
+  currentTenant?: Tenant;
+  setCurrentTenant: Dispatch<SetStateAction<Tenant | undefined>>;
+  currentLabel?: Label;
+  setCurrentLabel: Dispatch<SetStateAction<Label | undefined>>;
 
   isLoggedIn: boolean;
   login: (tenantName: string) => void;
@@ -33,19 +34,30 @@ export const useTenant = () => {
 };
 
 const TenantProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [currentTenant, setCurrentTenant] = useState<Tenant | null>(null);
-  const [currentLabel, setCurrentLabel] = useState<Label | null>(null);
+  const [currentTenant, setCurrentTenant] = useState<Tenant | undefined>();
+  const [currentLabel, setCurrentLabel] = useState<Label | undefined>();
+
+  useEffect(() => {
+    const tenantId = localStorage.getItem("tenant");
+    if (tenantId) {
+      const tenant = getTenant(tenantId);
+      if (tenant) setCurrentTenant(tenant);
+    }
+  }, []);
 
   const login = (tenantName: string) => {
-    const tenant = getTenant(tenantName);
+    const tenant = getTenantByName(tenantName);
     setCurrentTenant(tenant);
+
+    if (tenant) localStorage.setItem("tenant", tenant.id);
 
     return !!tenant;
   };
 
   const logout = () => {
-    setCurrentTenant(null);
-    setCurrentLabel(null);
+    setCurrentTenant(undefined);
+    setCurrentLabel(undefined);
+    localStorage.removeItem("tenant");
   };
 
   return (
