@@ -18,7 +18,7 @@ type TenantContextType = {
   setCurrentLabel: Dispatch<SetStateAction<Label | undefined>>;
 
   isLoggedIn: boolean;
-  login: (tenantName: string) => void;
+  login: (tenantName: string) => boolean;
   logout: () => void;
 };
 

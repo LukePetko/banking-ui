@@ -5,6 +5,8 @@ import TenantProvider from "./TenantContext";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import "./index.css";
+import { Toaster } from "./components/ui/sonner";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <TenantProvider>
       <RouterProvider router={router} />
+      <Toaster position="top-right" richColors />
     </TenantProvider>
   </React.StrictMode>,
 );
