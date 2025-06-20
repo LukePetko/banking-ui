@@ -30,7 +30,7 @@ const Topbar = () => {
         )}
         {Boolean(currentTenant?.logo || currentLabel?.logo) && (
           <img
-            src={currentLabel?.logo ?? currentTenant?.logo}
+            src={currentLabel?.logo || currentTenant?.logo || undefined}
             className="h-6 w-6"
           />
         )}
