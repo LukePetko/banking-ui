@@ -1,15 +1,29 @@
 import { Outlet, useNavigate } from "react-router";
 import { useTenant } from "./TenantContext";
 import { useEffect } from "react";
+import { hexToRgb } from "./utils/hexToRgb";
+import { DEFAULT_COLOR } from "./constants";
 
 function App() {
-  const { currentTenant } = useTenant();
+  const { currentTenant, currentLabel, isLoggedIn } = useTenant();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!currentTenant) {
+    const hex =
+      currentLabel?.primaryColor ?? currentTenant?.primaryColor ?? DEFAULT_COLOR;
+    const rgb = hexToRgb(hex);
+    document.documentElement.style.setProperty("--primary", hex);
+    document.documentElement.style.setProperty("--primary-rgb", rgb);
+  }, [currentTenant, currentLabel]);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
       navigate("/login");
+      return;
+    }
+
+    if (currentTenant === undefined) {
       return;
     }
 
@@ -18,7 +32,11 @@ function App() {
     }
   }, [currentTenant, navigate]);
 
-  return <Outlet />;
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-[rgba(var(--primary-rgb),0.05)] to-transparent">
+      <Outlet />
+    </div>
+  );
 }
 
 export default App;

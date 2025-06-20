@@ -3,7 +3,6 @@ type Tenant = {
   name: string;
   logo: string | null;
   primaryColor: string | null;
-  secondaryColor: string | null;
   country: string | null;
   revenue: {
     months: number[];
@@ -18,7 +17,6 @@ type Label = {
   name: string;
   logo: string | null;
   primaryColor: string | null;
-  secondaryColor: string | null;
   country: string | null;
   revenue: {
     months: number[];

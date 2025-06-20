@@ -10,9 +10,10 @@ import {
 } from "./ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { numberToMonth } from "@/utils/numberToMonth";
+import { DEFAULT_COLOR } from "@/constants";
 
 const LabelDashboard = () => {
-  const { setCurrentLabel, currentLabel } = useTenant();
+  const { setCurrentLabel, currentLabel, currentTenant } = useTenant();
   const { labelId, tenantId } = useParams();
 
   const revenueData = currentLabel?.revenue.months.map((revenue, index) => ({
@@ -23,7 +24,10 @@ const LabelDashboard = () => {
   const chartConfig = {
     revenue: {
       label: "Revenue",
-      color: "#2563eb",
+      color:
+        currentLabel?.primaryColor ??
+        currentTenant?.primaryColor ??
+        DEFAULT_COLOR,
     },
   } satisfies ChartConfig;
 
@@ -34,9 +38,9 @@ const LabelDashboard = () => {
   }, [labelId]);
 
   return (
-    <>
+    <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-4 pt-24 p-4">
       <h1 className="text-4xl font-bold mb-6">
-        Welcome, {currentLabel?.name}!
+        Welcome, <span className="text-[var(--primary)]">{currentLabel?.name}</span>!
       </h1>
       <div>
         <h2 className="text-2xl font-bold mb-6">Revenue</h2>
@@ -61,7 +65,7 @@ const LabelDashboard = () => {
           </BarChart>
         </ChartContainer>
       </div>
-    </>
+    </div>
   );
 };
 

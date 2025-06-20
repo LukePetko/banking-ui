@@ -17,6 +17,7 @@ import {
 } from "./ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import { numberToMonth } from "@/utils/numberToMonth";
+import { DEFAULT_COLOR } from "@/constants";
 
 const TenantDashboard = () => {
   const { currentTenant, currentLabel, setCurrentLabel } = useTenant();
@@ -30,7 +31,7 @@ const TenantDashboard = () => {
   const chartConfig = {
     revenue: {
       label: "Revenue",
-      color: "#2563eb",
+      color: currentTenant?.primaryColor ?? DEFAULT_COLOR,
     },
   } satisfies ChartConfig;
 
@@ -41,9 +42,9 @@ const TenantDashboard = () => {
   }, [currentLabel]);
 
   return (
-    <div className="h-full w-full flex flex-col gap-4">
+    <div className="w-full max-w-screen-xl mx-auto flex flex-col gap-4 pt-24 p-4">
       <h1 className="text-4xl font-bold mb-6">
-        Welcome, {currentTenant?.name}!
+        Welcome, <span className="text-[var(--primary)]">{currentTenant?.name}</span>!
       </h1>
       <div>
         <h2 className="text-2xl font-bold mb-6">Labels</h2>
@@ -57,7 +58,11 @@ const TenantDashboard = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                Last month revenue: <span className="font-semibold">{label.revenue.months.at(-1)}</span>€
+                Last month revenue:{" "}
+                <span className="font-semibold">
+                  {label.revenue.months.at(-1)}
+                </span>
+                €
               </CardContent>
               <CardFooter
                 className="text-zinc-500 hover:text-zinc-700 hover:underline text-sm cursor-pointer"
@@ -87,8 +92,7 @@ const TenantDashboard = () => {
               tickFormatter={(value) => numberToMonth(value).slice(0, 3)}
             />
             <ChartTooltip
-              content={<ChartTooltipContent className="min-w-[160px]" 
-                />}
+              content={<ChartTooltipContent className="min-w-[160px]" />}
             />
 
             <Bar dataKey="revenue" fill="var(--color-revenue)" radius={4} />

@@ -9,6 +9,8 @@ import { Toaster } from "./components/ui/sonner";
 import DashboardLayout from "./components/DashboardLayout";
 import TenantDashboard from "./components/TenantDashboard";
 import LabelDashboard from "./components/LabelDashboard";
+import TenantSettings from "./components/TenantSettings";
+import LabelSettings from "./components/LabelSettings";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +32,15 @@ const router = createBrowserRouter([
           {
             path: "/tenant/:tenantId/label/:labelId",
             Component: LabelDashboard,
+          },
+
+          {
+            path: "/tenant/:tenantId/settings",
+            Component: TenantSettings,
+          },
+          {
+            path: "/tenant/:tenantId/label/:labelId/settings",
+            Component: LabelSettings,
           },
         ],
       },

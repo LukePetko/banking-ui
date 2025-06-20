@@ -5,8 +5,7 @@ const data: Record<string, Tenant> = {
     id: "dcc4ff9b-de85-4135-91f3-71ebe66092c6",
     name: "BigBank",
     logo: "/bank.svg",
-    primaryColor: "#000000",
-    secondaryColor: "#000000",
+    primaryColor: "#1E3A8A",
     country: "UK",
     revenue: {
       months: [
@@ -20,7 +19,6 @@ const data: Record<string, Tenant> = {
         name: "BigBank Accounts",
         logo: null,
         primaryColor: null,
-        secondaryColor: null,
         country: null,
         revenue: {
           months: [
@@ -33,8 +31,7 @@ const data: Record<string, Tenant> = {
         id: "e2deafd6-a8e0-4881-9e20-1eac1639bd66",
         name: "BigBank Loans",
         logo: null,
-        primaryColor: "",
-        secondaryColor: "",
+        primaryColor: "#0D9488",
         country: null,
         revenue: {
           months: [
@@ -47,8 +44,7 @@ const data: Record<string, Tenant> = {
         id: "c700340b-bd7c-453c-a6c7-b44d6122adf2",
         name: "BigBank Premium",
         logo: "/star.svg",
-        primaryColor: "",
-        secondaryColor: "",
+        primaryColor: "#D97706",
         country: null,
         revenue: {
           months: [
@@ -61,8 +57,7 @@ const data: Record<string, Tenant> = {
         id: "ad54706b-ff43-4ec0-84da-66f6513d2891",
         name: "BigBank Savings",
         logo: "/piggy-bank.svg",
-        primaryColor: "",
-        secondaryColor: "",
+        primaryColor: "#16A34A",
         country: null,
         revenue: {
           months: [

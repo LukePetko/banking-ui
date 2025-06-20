@@ -10,6 +10,7 @@ import {
 } from "react";
 import { Label, Tenant } from "@/types";
 import { getTenant, getTenantByName } from "./mock";
+import { useNavigate } from "react-router";
 
 type TenantContextType = {
   currentTenant?: Tenant;
@@ -36,6 +37,7 @@ export const useTenant = () => {
 const TenantProvider: FC<PropsWithChildren> = ({ children }) => {
   const [currentTenant, setCurrentTenant] = useState<Tenant | undefined>();
   const [currentLabel, setCurrentLabel] = useState<Label | undefined>();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     const tenantId = localStorage.getItem("tenant");
@@ -45,19 +47,27 @@ const TenantProvider: FC<PropsWithChildren> = ({ children }) => {
     }
   }, []);
 
+    useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
+
   const login = (tenantName: string) => {
     const tenant = getTenantByName(tenantName);
     setCurrentTenant(tenant);
 
     if (tenant) localStorage.setItem("tenant", tenant.id);
 
-    return !!tenant;
+    setIsLoggedIn(!!tenant);
+
+    return tenant?.id;
   };
 
   const logout = () => {
     setCurrentTenant(undefined);
     setCurrentLabel(undefined);
     localStorage.removeItem("tenant");
+        
+    setIsLoggedIn(false);
   };
 
   return (
@@ -69,7 +79,7 @@ const TenantProvider: FC<PropsWithChildren> = ({ children }) => {
         setCurrentLabel,
         login,
         logout,
-        isLoggedIn: !!currentTenant,
+        isLoggedIn,
       }}
     >
       {children}
