@@ -1,6 +1,6 @@
 import { getLabel } from "@/mock";
 import { useTenant } from "@/TenantContext";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
 import {
   ChartConfig,

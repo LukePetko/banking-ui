@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from "react-router";
-import { useTenant } from "./TenantContext";
+import { useTenant } from "@/TenantContext";
 import { useEffect } from "react";
-import { hexToRgb } from "./utils/hexToRgb";
-import { DEFAULT_COLOR } from "./constants";
+import { hexToRgb } from "@/utils/hexToRgb";
+import { DEFAULT_COLOR } from "@/constants";
 
 function App() {
   const { currentTenant, currentLabel, isLoggedIn } = useTenant();
@@ -23,7 +23,7 @@ function App() {
       return;
     }
 
-    if (currentTenant === undefined) {
+    if (!currentTenant) {
       return;
     }
 

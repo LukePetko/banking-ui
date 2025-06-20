@@ -9,8 +9,7 @@ import {
   useState,
 } from "react";
 import { Label, Tenant } from "@/types";
-import { getTenant, getTenantByName } from "./mock";
-import { useNavigate } from "react-router";
+import { getTenant, getTenantByName } from "@/mock";
 
 type TenantContextType = {
   currentTenant?: Tenant;
@@ -19,7 +18,7 @@ type TenantContextType = {
   setCurrentLabel: Dispatch<SetStateAction<Label | undefined>>;
 
   isLoggedIn: boolean;
-  login: (tenantName: string) => boolean;
+  login: (tenantName: string) => string | undefined;
   logout: () => void;
 };
 
@@ -46,10 +45,6 @@ const TenantProvider: FC<PropsWithChildren> = ({ children }) => {
       if (tenant) setCurrentTenant(tenant);
     }
   }, []);
-
-    useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
 
   const login = (tenantName: string) => {
     const tenant = getTenantByName(tenantName);

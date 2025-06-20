@@ -1,5 +1,4 @@
 import { useTenant } from "@/TenantContext";
-import React from "react";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
@@ -56,7 +55,7 @@ const LabelSettings = () => {
             <Input
               className="w-12"
               type="color"
-              value={currentLabel?.primaryColor}
+              value={currentLabel?.primaryColor ?? "#000"}
               disabled
             />
           </div>

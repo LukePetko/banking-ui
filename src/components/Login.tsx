@@ -39,7 +39,7 @@ const Login = () => {
           <Button
             className="flex-1 h-12 text-lg"
             variant="outline"
-            onClick={() => toast.info("Try BigBank")}
+            onClick={() => toast.info("Try BigBank or TrustBank")}
             type="button"
           >
             Forgot name?

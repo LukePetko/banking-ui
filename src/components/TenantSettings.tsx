@@ -1,5 +1,4 @@
 import { useTenant } from "@/TenantContext";
-import React from "react";
 import { Input } from "./ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
@@ -43,7 +42,7 @@ const TenantSettings = () => {
             <Input
               className="w-12"
               type="color"
-              value={currentTenant?.primaryColor}
+              value={currentTenant?.primaryColor ?? "#000"}
               disabled
             />
           </div>

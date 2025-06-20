@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Outlet, useParams } from "react-router";
 import Topbar from "./Topbar";
 import { useTenant } from "@/TenantContext";
