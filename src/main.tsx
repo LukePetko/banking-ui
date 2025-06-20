@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import "./index.css";
 import { Toaster } from "./components/ui/sonner";
+import DashboardLayout from "./components/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -18,8 +19,14 @@ const router = createBrowserRouter([
         Component: Login,
       },
       {
-        path: "/dashboard",
-        Component: Dashboard,
+        path: "/tenant",
+        Component: DashboardLayout,
+        children: [
+          {
+            path: "/tenant/:tenantId",
+            Component: Dashboard,
+          },
+        ],
       },
     ],
   },

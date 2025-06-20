@@ -3,17 +3,20 @@ import { useTenant } from "./TenantContext";
 import { useEffect } from "react";
 
 function App() {
-  const { isLoggedIn } = useTenant();
+  const { currentTenant } = useTenant();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/dashboard");
-    } else {
+    if (!currentTenant) {
       navigate("/login");
+      return;
     }
-  }, [isLoggedIn, navigate]);
+
+    if (location.pathname === "/" || location.pathname === "/login") {
+      navigate(`/tenant/${currentTenant.id}`);
+    }
+  }, [currentTenant, navigate]);
 
   return <Outlet />;
 }

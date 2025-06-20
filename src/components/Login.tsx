@@ -19,9 +19,9 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center flex-col pb-20">
+    <div className="h-screen w-screen flex justify-center items-center flex-col">
       <form
-        className="w-full max-w-lg flex flex-col gap-4 px-6 pt-12 pb-6 border-zinc-300 border rounded-md shadow-zinc-400 shadow-lg"
+        className="w-full max-w-lg flex flex-col gap-4 px-6 pt-12 pb-6 border-zinc-300 border rounded-md shadow-zinc-400 shadow-lg mb-20"
         onSubmit={handleSubmit}
       >
         <h1 className="text-4xl font-bold mb-6">Login to your bank!</h1>

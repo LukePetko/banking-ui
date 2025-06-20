@@ -4,7 +4,7 @@ const data: Record<string, Tenant> = {
   "dcc4ff9b-de85-4135-91f3-71ebe66092c6": {
     id: "dcc4ff9b-de85-4135-91f3-71ebe66092c6",
     name: "BigBank",
-    logo: "",
+    logo: "/bank.svg",
     primaryColor: "#000000",
     secondaryColor: "#000000",
     country: "UK",
