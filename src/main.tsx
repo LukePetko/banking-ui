@@ -4,10 +4,11 @@ import App from "@/App.tsx";
 import TenantProvider from "./TenantContext";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
 import "./index.css";
 import { Toaster } from "./components/ui/sonner";
 import DashboardLayout from "./components/DashboardLayout";
+import TenantDashboard from "./components/TenantDashboard";
+import LabelDashboard from "./components/LabelDashboard";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
         children: [
           {
             path: "/tenant/:tenantId",
-            Component: Dashboard,
+            Component: TenantDashboard,
+          },
+          {
+            path: "/tenant/:tenantId/label/:labelId",
+            Component: LabelDashboard,
           },
         ],
       },
