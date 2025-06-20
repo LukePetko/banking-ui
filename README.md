@@ -83,3 +83,5 @@ The project uses React Router for routing. There are following routes:
    - View contains attributes of the label in form (read only for demo purposes only)
 
 
+## Deployment
+The project is deployed on Vercel. The link to the deployed app is [here](https://banking-ui-three.vercel.app/).
