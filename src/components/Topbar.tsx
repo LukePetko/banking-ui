@@ -48,8 +48,17 @@ const Topbar = () => {
           <DropdownMenuLabel>{currentTenant?.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <a href={`${currentTenant?.id}/settings`}>Settings</a>
+            <a href={`${currentTenant?.id}/settings`}>Tenant Settings</a>
           </DropdownMenuItem>
+          {currentLabel?.id && (
+            <DropdownMenuItem>
+              <a
+                href={`${currentTenant?.id}/label/${currentLabel?.id}/settings`}
+              >
+                Label Settings
+              </a>
+            </DropdownMenuItem>
+          )}
           <DropdownMenuItem className="text-red-500" onClick={logout}>
             Logout
           </DropdownMenuItem>
